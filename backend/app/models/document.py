@@ -4,7 +4,7 @@ from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
 
 import uuid
-from ..main import Base
+from ..core.database import Base
 
 class Document(Base):
     __tablename__ = "documents"

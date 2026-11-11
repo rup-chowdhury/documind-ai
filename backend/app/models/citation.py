@@ -4,7 +4,7 @@ from sqlalchemy import Column, Float, ForeignKey
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 
-from ..main import Base
+from ..core.database import Base
 
 
 class Citation(Base):
