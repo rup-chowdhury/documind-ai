@@ -2,6 +2,7 @@ import uuid
 
 from sqlalchemy import Column, Float, ForeignKey
 from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.orm import relationship
 
 from ..main import Base
 
@@ -26,3 +27,6 @@ class Citation(Base):
     )
 
     relevance_score = Column(Float, nullable=True)
+
+    message = relationship("Message", back_populates="citations")
+    chunk = relationship("DocumentChunk", back_populates="citations")

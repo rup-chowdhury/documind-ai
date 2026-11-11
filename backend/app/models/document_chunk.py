@@ -2,6 +2,7 @@ import uuid
 
 from sqlalchemy import Column, ForeignKey, Integer, Text
 from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.orm import relationship
 
 from ..main import Base
 
@@ -21,3 +22,6 @@ class DocumentChunk(Base):
     chunk_index = Column(Integer, nullable=False)
     page_number = Column(Integer, nullable=False)
     content = Column(Text, nullable=False)
+
+    document = relationship("Document", back_populates="chunks")
+    citations = relationship("Citation", back_populates="chunk")

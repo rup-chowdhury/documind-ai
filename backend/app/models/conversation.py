@@ -3,6 +3,7 @@ import uuid
 from sqlalchemy import Column, DateTime, ForeignKey, String
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.sql import func
+from sqlalchemy.orm import relationship
 
 from ..main import Base
 
@@ -25,3 +26,6 @@ class Conversation(Base):
         DateTime(timezone=True),
         server_default=func.now(),
     )
+
+    owner = relationship("User", back_populates="conversations")
+    messages = relationship("Message", back_populates="conversation")

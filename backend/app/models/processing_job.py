@@ -3,6 +3,7 @@ import uuid
 from sqlalchemy import Column, DateTime, ForeignKey, Integer, String
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.sql import func
+from sqlalchemy.orm import relationship
 
 from ..main import Base
 
@@ -25,6 +26,8 @@ class ProcessingJob(Base):
 
     started_at = Column(DateTime(timezone=True), nullable=True)
     completed_at = Column(DateTime(timezone=True), nullable=True)
+
+    document = relationship("Document", back_populates="processing_jobs")
 
     created_at = Column(
         DateTime(timezone=True),

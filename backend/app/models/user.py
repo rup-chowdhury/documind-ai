@@ -1,6 +1,8 @@
 from sqlalchemy import Column, String, DateTime
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.sql import func
+from sqlalchemy.orm import relationship
+
 import uuid
 from ..main import Base
 
@@ -11,3 +13,7 @@ class User(Base):
     email = Column(String, unique=True, index=True, nullable=False)
     password_hash = Column(String, nullable=False)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
+
+    documents = relationship("Document", back_populates="owner")
+    conversations = relationship("Conversation", back_populates="owner")
+
